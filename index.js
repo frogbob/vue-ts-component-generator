@@ -14,4 +14,8 @@ program
         generateComponent(name);
     });
 
-program.parse(process.argv);
+if (!process.argv.slice(2).length || !/[arudl]/.test(process.argv.slice(2))) {
+    program.outputHelp();
+    process.exit();
+}
+program.parse(process.argv)

@@ -30,6 +30,9 @@ const generateComponent = (name) => {
         console.info(stub + '-File was created.');
     });
 
+
+    console.info('\x1b[32m', 'Vue component was created!', '\x1b[0m');
+
 }
 
 module.exports = { generateComponent };
