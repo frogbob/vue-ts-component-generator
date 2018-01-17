@@ -9,5 +9,24 @@
     "commander": "^2.13.0",
     "inquirer": "^5.0.0",
     "vue": "^2.5.13"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frogbob/vue-ts-component-generator.git"
+  },
+  "keywords": [
+    "vue",
+    "typescript"
+  ],
+  "bin": {
+    "vue:component": "./index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/frogbob/vue-ts-component-generator/issues"
+  },
+  "homepage": "https://github.com/frogbob/vue-ts-component-generator#readme"
 }
