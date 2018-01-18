@@ -22,6 +22,7 @@
     "vue",
     "typescript"
   ],
+  "preferGlobal": true,
   "bin": {
     "vue:component": "./index.js"
   },
