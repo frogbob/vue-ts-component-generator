@@ -9,7 +9,7 @@ program
     .description('Create Vue typescript components');
 
 program
-    .command('vue:component <name>')
+    .command('generate <name>')
     .alias('g')
     .description('Generate component')
     .action((name, ) => {
