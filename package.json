@@ -1,6 +1,6 @@
 {
   "name": "vue-ts-component-generator",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Create Vue components with typescript support",
   "main": "index.js",
   "author": "frogbob",
