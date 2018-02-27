@@ -5,7 +5,7 @@ const program = require('commander');
 const { generateComponent } = require('./generate');
 
 program
-    .version('0.1.4')
+    .version('0.1.5')
     .description('Create Vue typescript components');
 
 program
