@@ -12,7 +12,7 @@ program
     .command('generate <name>')
     .alias('g')
     .description('Generate component')
-    .action((name, ) => {
+    .action(name => {
         generateComponent(name);
     });
 
