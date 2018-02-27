@@ -22,6 +22,6 @@ npm i -g vue-ts-component-generator
 
 Just run command in terminal
 
-`vue:component {component}` 
+`vue:component generate {component}` 
 
 Just replace {component} with your component name
