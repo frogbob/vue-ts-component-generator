@@ -1,38 +1,51 @@
 var path = require('path');
 var fs = require('fs');
-const { prompt } = require('inquirer');
+var mkdirp = require('mkdirp');
 
-const generateComponent = (name) => {
+const generateComponent = (name, comp_path) => {
     let stubsPath = path.resolve(__dirname, 'stubs');
 
     let stubs = ['ts', 'vue', 'html', 'scss'];
 
-    if (!fs.existsSync(name)) {
-        fs.mkdirSync(name);
-    }
+    let cp = comp_path + '/' + name;
+    mkdirp(cp, (err) => {
+        if (err) {
+             console.error(err)
+        } else {
 
-    stubs.forEach(stub => {
-        let stubPath = stubsPath + '/' + stub + '.stub';
+            stubs.forEach(stub => {
+                let stubPath = stubsPath + '/' + stub + '.stub';
 
-        let newFile = name + '/' + name + '.' + stub;
+                let newFile = cp + '/' + name + '.' + stub;
 
-        fs.readFile(stubPath, 'utf8', function (err, data) {
-            if (err) {
-                return console.log(err);
-            }
-            var result = data.replace(/\$name/g, name);
+                fs.readFile(stubPath, 'utf8', (err, data) => {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    var result = data.replace(/\$name/g, name);
 
-            fs.writeFile(newFile, result, 'utf8', function (err) {
-                if (err) return console.log(err);
+                    fs.writeFile(newFile, result, 'utf8', (err) => {
+                        if (err) return console.log(err);
+                    });
+                });
+
+                console.info(stub + '-File was created.');
             });
-        });
 
-        console.info(stub + '-File was created.');
+            console.info('\x1b[32m', 'Vue component was created!', '\x1b[0m');
+
+        }
     });
 
+}
 
-    console.info('\x1b[32m', 'Vue component was created!', '\x1b[0m');
-
+function ensureDirectoryExistence(filePath) {
+    var dirname = path.dirname(filePath);
+    if (fs.existsSync(dirname)) {
+        return true;
+    }
+    ensureDirectoryExistence(dirname);
+    fs.mkdirSync(dirname);
 }
 
 module.exports = { generateComponent };

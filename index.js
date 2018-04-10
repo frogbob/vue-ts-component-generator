@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander');
+const prompt = require('prompt');
 
 const { generateComponent } = require('./generate');
 
@@ -13,7 +14,15 @@ program
     .alias('g')
     .description('Generate component')
     .action(name => {
-        generateComponent(name);
+        prompt.get([{
+            name: 'comp_path',
+            description: 'Path to components',
+            type: 'string',
+            required: true,
+            default: 'resources/assets/js/components'
+        }], (err, result) => {
+            generateComponent(name, result.comp_path);
+        })
     });
 
 if (!process.argv.slice(2).length || !/[arudl]/.test(process.argv.slice(2))) {
