@@ -24,12 +24,12 @@ Just run command in terminal
 
 `vue:component generate {component}`
 
-Just replace {component} with your component name
+and replace {component} with your component name
 
 ## Path
 
 Since Version 0.1.6 you can set the path where your components are stored.
-For now there is a default Path for the Laravel-Environmen, but you can set it to every path you want.
+For now there is a default Path for the Laravel-Environment, but you can set it to every path you want.
 
 ## Naming convention
 
