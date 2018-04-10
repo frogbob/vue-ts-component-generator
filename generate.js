@@ -1,13 +1,18 @@
 var path = require('path');
 var fs = require('fs');
 var mkdirp = require('mkdirp');
+var slug = require('slug')
 
 const generateComponent = (name, comp_path) => {
     let stubsPath = path.resolve(__dirname, 'stubs');
 
     let stubs = ['ts', 'vue', 'html', 'scss'];
 
-    let cp = comp_path + '/' + name;
+    var slug = name.replace(/[A-Z]/g, "-$&").toLowerCase();
+        slug = (slug.length && slug[0] == '-') ? slug.slice(1) : slug;
+
+    let cp = comp_path + '/' + slug;
+    console.log(cp);
     mkdirp(cp, (err) => {
         if (err) {
              console.error(err)
@@ -23,6 +28,7 @@ const generateComponent = (name, comp_path) => {
                         return console.log(err);
                     }
                     var result = data.replace(/\$name/g, name);
+                        result = result.replace(/\$slug/g, slug);
 
                     fs.writeFile(newFile, result, 'utf8', (err) => {
                         if (err) return console.log(err);
