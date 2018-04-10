@@ -1,7 +1,6 @@
 var path = require('path');
 var fs = require('fs');
 var mkdirp = require('mkdirp');
-var slug = require('slug')
 
 const generateComponent = (name, comp_path) => {
     let stubsPath = path.resolve(__dirname, 'stubs');
