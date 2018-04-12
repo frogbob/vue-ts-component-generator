@@ -3,54 +3,48 @@ var fs = require('fs');
 var mkdirp = require('mkdirp');
 
 const generateComponent = (name, comp_path) => {
-    let stubsPath = path.resolve(__dirname, 'stubs');
+  let stubsPath = path.resolve(__dirname, 'stubs');
 
-    let stubs = ['ts', 'vue', 'html', 'scss'];
+  let stubs = ['ts', 'vue', 'html', 'scss'];
 
-    var slug = name.replace(/[A-Z]/g, "-$&").toLowerCase();
-        slug = (slug.length && slug[0] == '-') ? slug.slice(1) : slug;
+  // Slugify component-name (for component-folder)
+  var slug = name.replace(/[A-Z]/g, "-$&").toLowerCase();
+  slug = (slug.length && slug[0] == '-') ? slug.slice(1) : slug;
 
-    let cp = comp_path + '/' + slug;
-    console.log(cp);
-    mkdirp(cp, (err) => {
-        if (err) {
-             console.error(err)
-        } else {
+  // Define component-folder
+  let cp = comp_path + '/' + slug;
 
-            stubs.forEach(stub => {
-                let stubPath = stubsPath + '/' + stub + '.stub';
+  // Create component-folder to given path
+  mkdirp(cp, (err) => {
+    if (err) {
+      console.error(err)
+    } else {
+      // Generate each Stub
+      stubs.forEach(stub => {
+        let stubPath = stubsPath + '/' + stub + '.stub';
 
-                let newFile = cp + '/' + name + '.' + stub;
+        let newFile = cp + '/' + name + '.' + stub;
 
-                fs.readFile(stubPath, 'utf8', (err, data) => {
-                    if (err) {
-                        return console.log(err);
-                    }
-                    var result = data.replace(/\$name/g, name);
-                        result = result.replace(/\$slug/g, slug);
+        fs.readFile(stubPath, 'utf8', (err, data) => {
+          if (err) {
+            return console.log(err);
+          }
+          var result = data.replace(/\$name/g, name);
+          result = result.replace(/\$slug/g, slug);
 
-                    fs.writeFile(newFile, result, 'utf8', (err) => {
-                        if (err) return console.log(err);
-                    });
-                });
+          fs.writeFile(newFile, result, 'utf8', (err) => {
+            if (err) return console.log(err);
+          });
+        });
 
-                console.info(stub + '-File was created.');
-            });
+        console.info(stub + '-File was created.');
+      });
 
-            console.info('\x1b[32m', 'Vue component was created!', '\x1b[0m');
+      console.info('\x1b[32m', 'Vue component was created!', '\x1b[0m');
 
-        }
-    });
-
-}
-
-function ensureDirectoryExistence(filePath) {
-    var dirname = path.dirname(filePath);
-    if (fs.existsSync(dirname)) {
-        return true;
     }
-    ensureDirectoryExistence(dirname);
-    fs.mkdirSync(dirname);
+  });
+
 }
 
 module.exports = { generateComponent };
