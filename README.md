@@ -2,7 +2,7 @@ Vue-TS-Component-Generator
 ====================
 
 
-![Vue-TS-Component-Generator](img/vue-ts-component-generator.png)
+![Vue-TS-Component-Generator](http://api.devbar.ultrabold.de/github?text=VueTSComponentGenerator)
 
 
 **Generate vue typescript components.**
